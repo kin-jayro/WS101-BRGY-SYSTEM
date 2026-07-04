@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/blotter.css">
+</head>
+
+<body>
+
+    <!-- Sidebar Toggle -->
+    <button id="menuBtn" class="menu-btn">&#9776;</button>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Sidebar -->
+    <aside id="auth-sidebar" class="sidebar level-2 level-3">
+        <button id="closeBtn" class="close-btn">&times;</button>
+        <h2>Logo</h2>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="index.html" class="active">
+                    <span>📢</span> Dashboard
+                </a>
+            </li>
+            <li><a href="brgyinfo.html"><span>📝</span> Barangay Information </a></li>
+            <li><a href="officials.html"><span>👥</span> Barangay Officials </a></li>
+            <li><a href="blotter.html"><span>📖</span> Blotter</a></li>
+            <li><a href="files.html"><span>📖</span> Files </a></li>
+            <li><a href="#"><span>📂</span> Chat Support </a></li>
+        </ul>
+    </aside>
+
+    
+    <aside id="public-sidebar" class="sidebar level-1">
+        <button id="closeBtn" class="close-btn">&times;</button>
+        <h2>Logo</h2>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="index.html" class="active">
+                    <span>📢</span> Dashboard
+                </a>
+            </li>
+            <li><a href="brgyinfo.html"><span>📝</span> Barangay Information </a></li>
+            <li><a href="officials.html"><span>👥</span> Barangay Officials </a></li>
+            <li><a href="#"><span>📂</span> Chat Support </a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Main Area -->
+    <div class="main">
+
+
+        <header class="header">
+
+            <h1>Blotter Records</h1>
+
+            <!-- Logged In -->
+            <div id="loggedInUser" class="header-right auth-only">
+                <span id="welcomeText">Welcome, User</span>
+                <img src="" alt="Profile">
+
+                <button id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+            </div>
+
+            <!-- Guest -->
+            <div id="guestUser" class="header-right guest-only">
+                <button class="login-btn">
+                    Login
+                </button>
+
+        </header>
+        <!-- Content -->
+        <main class="content">
+            <div class="page-header">
+                <h2>Barangay Blotter</h2>
+
+                <button class="add-btn" id="add-blotter-btn">
+                    + New Blotter Record
+                </button>
+            </div>
+
+            <div class="card">
+
+                <div class="table-header">
+
+                    <input type="text" placeholder="Search blotter..." class="search-box">
+
+                    <select class="status-filter">
+                        <option>All Status</option>
+                        <option>Open</option>
+                        <option>Settled</option>
+                        <option>Pending</option>
+                    </select>
+
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Blotter No.</th>
+                            <th>Date</th>
+                            <th>Complainant</th>
+                            <th>Respondent</th>
+                            <th>Case</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="blotter-data">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <div id="viewModal" class="modal">
+        <div class="modal-card view-card">
+            <div class="modal-header">
+                <h2>Blotter Record</h2>
+                <button id="closeViewModal">&times;</button>
+            </div>
+
+            <div id="viewContent">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="blotterModal" class="modal">
+
+        <div class="modal-card">
+
+            <div class="modal-header">
+                <h2>New Blotter Record</h2>
+
+                <button id="closeModal" class="close-btn">&times;</button>
+            </div>
+
+            <form id="blotterForm">
+
+                <!-- ================= Blotter Information ================= -->
+
+                <div class="section">
+
+                    <h3>📄 Blotter Information</h3>
+
+                    <div class="grid">
+
+                        <div>
+                            <label>Incident Date <span class="required">*</span></label>
+                            <input id="incident_date" type="date" required>
+                        </div>
+
+                        <div>
+                            <label>Incident Time <span class="required">*</span></label>
+                            <input id="incident_time" type="time" required>
+                        </div>
+
+                        <div class="full">
+                            <label>Incident Location <span class="required">*</span></label>
+                            <input id="incident_location" type="text" placeholder="Enter incident location" required>
+                        </div>
+
+                        <div class="full">
+                            <label>Incident Type <span class="required">*</span></label>
+
+                            <select id="incident_type" required>
+                                <option value="">-- Select Incident Type --</option>
+                                <option>Noise Complaint</option>
+                                <option>Boundary Dispute</option>
+                                <option>Physical Altercation</option>
+                                <option>Verbal Altercation</option>
+                                <option>Theft</option>
+                                <option>Domestic Dispute</option>
+                                <option>Others</option>
+                            </select>
+                        </div>
+
+                        <div class="full">
+                            <label>Description of Incident <span class="required">*</span></label>
+
+                            <textarea id="incident_description" rows="4" placeholder="Describe what happened..."
+                                required></textarea>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ================= Complainant ================= -->
+
+                <div class="section">
+
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <h3>👤 Complainant(s)</h3>
+
+                        <button type="button" id="addComplainant">
+                            + Add Complainant
+                        </button>
+                    </div>
+
+                    <div id="complainantContainer">
+
+                        <!-- First Complainant -->
+                        <div class="complainant-item">
+
+                            <div class="grid">
+
+                                <div>
+                                    <label>Full Name <span class="required">*</span></label>
+                                    <input type="text" name="complainant_name[]" required>
+                                </div>
+
+                                <div>
+                                    <label>Age <span class="required">*</span></label>
+                                    <input type="number" name="complainant_age[]" min="1" max="120" required>
+                                </div>
+
+                                <div>
+                                    <label>Sex <span class="required">*</span></label>
+                                    <select name="complainant_sex[]" required>
+                                        <option value="">Select</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label>Contact Number</label>
+                                    <input type="tel" name="complainant_contact[]" pattern="[0-9]{11}"
+                                        placeholder="09XXXXXXXXX">
+                                </div>
+
+                                <div class="full">
+                                    <label>Address <span class="required">*</span></label>
+                                    <input type="text" name="complainant_address[]" required>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ================= Respondent ================= -->
+
+                <div class="section">
+
+                    <h3>👥 Respondent</h3>
+
+                    <div class="grid">
+
+                        <div>
+                            <label>Full Name <span class="required">*</span></label>
+                            <input id="respondent_name" text required>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ================= Actions ================= -->
+
+                <div class="actions">
+                    <button type="button" id="cancelBtn">
+                        Cancel
+                    </button>
+
+                    <button type="submit">
+                        Save Record
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module" src="js/supabase.js"></script>
+    <script type="module" src="js/blotter.js"></script>
+
+</body>
+
+</html>

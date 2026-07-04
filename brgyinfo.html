@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Information</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/brgyinfo.css">
+</head>
+
+<body>
+
+    <button id="menuBtn" class="menu-btn">&#9776;</button>
+    <div id="overlay" class="overlay"></div>
+
+    <aside id="auth-sidebar" class="sidebar level-2 level-3">
+        <button id="closeBtn" class="close-btn">&times;</button>
+        <h2>Logo</h2>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="index.html">
+                    <span>📢</span> Dashboard
+                </a>
+            </li>
+            <li><a href="brgyinfo.html" class="active"><span>📝</span> Barangay Information </a></li>
+            <li><a href="officials.html"><span>👥</span> Barangay Officials </a></li>
+            <li><a href="blotter.html"><span>📖</span> Blotter</a></li>
+            <li><a href="files.html"><span>📖</span> Files </a></li>
+            <li><a href="#"><span>📂</span> Chat Support </a></li>
+        </ul>
+    </aside>
+
+
+    <aside id="public-sidebar" class="sidebar level-1">
+        <button id="closeBtn" class="close-btn">&times;</button>
+        <h2>Logo</h2>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="index.html">
+                    <span>📢</span> Dashboard
+                </a>
+            </li>
+            <li><a href="brgyinfo.html" class="active"><span>📝</span> Barangay Information </a></li>
+            <li><a href="officials.html"><span>👥</span> Barangay Officials </a></li>
+            <li><a href="#"><span>📂</span> Chat Support </a></li>
+        </ul>
+    </aside>
+
+    <div class="main">
+        <header class="header">
+
+            <h1>Barangay Information</h1>
+
+            <!-- Logged In -->
+            <div id="loggedInUser" class="header-right">
+                <span id="welcomeText">Welcome, User</span>
+                <img src="" alt="Profile">
+
+                <button id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+            </div>
+
+            <!-- Guest -->
+            <div id="guestUser" class="header-right">
+                <button class="login-btn">
+                    Login
+                </button>
+
+            </div>
+
+        </header>
+
+        <main class="content">
+            <div class="info-layout">
+
+                <div class="info-sidebar-card">
+                    <div class="logo-wrapper">
+                        <img src="BrgyLogo.jpg">
+                    </div>
+
+                </div>
+
+                <div class="settings-main-card">
+                    <div class="settings-card-header">
+                        <span>ℹ️ Barangay Details</span>
+                    </div>
+                    <div class="settings-data-display">
+                        <div class="display-row">
+                            <span class="field-label">Barangay</span>
+                            <span class="field-value">Pitipiwpiw Wiw Wiw</span>
+                        </div>
+                        <div class="display-row">
+                            <span class="field-label">Municipality</span>
+                            <span class="field-value">Lipa City</span>
+                        </div>
+                        <div class="display-row">
+                            <span class="field-label">Province</span>
+                            <span class="field-value">Batangas</span>
+                        </div>
+                        <div class="display-row">
+                            <span class="field-label">Phone Number</span>
+                            <span class="field-value">+63 123456789</span>
+                        </div>
+                        <div class="display-row">
+                            <span class="field-label">Email Address</span>
+                            <span class="field-value">barangayUB@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/supabase.js"></script>
+    <script type="module" src="js/index.js"></script>
+</body>
+
+</html>
