@@ -1,0 +1,247 @@
+
+.official-section{
+    margin-bottom:50px;
+}
+
+.section-title{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:25px;
+    color:#1f2937;
+    border-left:6px solid #0f766e;
+    padding-left:15px;
+}
+
+.official-section .officials-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+.status-active {
+    color: #16a34a !important;
+}
+
+/* ================= Right Side Grid System (All Cards Viewable) ================= */
+.officials-grid-zone {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Bigger grid cards */
+.officials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+/* Bigger card */
+.official-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+/* Colors background setups */
+.official-card.color-blue .card-header { background-color: #007bff; }
+.official-card.color-teal .card-header { background-color: #17a2b8; }
+.official-card.color-red .card-header { background-color: #dc3545; }
+.official-card.color-yellow .card-header { background-color: #ffc107; }
+.official-card.color-gray .card-header { background-color: #6c757d; }
+
+
+.card-header{
+    padding:24px 20px 50px;
+}
+
+.card-header h3{
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.role-text{
+    font-size:16px;
+    font-weight:500;
+}
+.card-body {
+    background: #ffffff;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card-body{
+    padding:0 20px 20px;
+}
+
+/* Adjusted to -16px so the picture frame drops clear of the role labels above it */
+.avatar-container {
+    position: relative;
+    margin-top: -16px; 
+    margin-bottom: 12px;
+    z-index: 5;
+}
+
+.avatar-container img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    background: #f8fafc;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 5px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 10px;
+}
+
+.card-actions > div {
+    text-align: center;
+    font-size: 11px;
+    color: #64748b;
+    flex: 1;
+}
+
+.card-actions strong {
+    color: #1e293b;
+    font-size: 13px;
+    display: block;
+}
+
+.view-btn {
+    background: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px;
+}
+.avatar-container{
+    margin-top:-28px;
+    margin-bottom:18px;
+}
+
+.avatar-container img{
+    width:100px;
+    height:100px;
+    border:4px solid #fff;
+}
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+.dot-green { background-color: #28a745; }
+.dot-red { background-color: #dc3545; }
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-content{
+    width:600px;
+    max-width:95%;
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    animation:fade .25s ease;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(-20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.close-modal{
+    float:right;
+    font-size:30px;
+    cursor:pointer;
+    padding:15px;
+}
+
+.official-profile{
+    text-align:center;
+    padding:20px;
+    background:#0f766e;
+    color:white;
+}
+
+.official-profile img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid white;
+}
+
+.modal-role{
+    margin-top:8px;
+    opacity:.9;
+}
+
+.modal-details{
+    padding:25px;
+}
+
+.detail-row{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+}
+
+.detail-row:last-child{
+    border:none;
+}
+
+.detail-row span{
+    color:#666;
+}
+
+.detail-row strong,
+.detail-row a{
+    color:#111827;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .officials-layout-container {
+        flex-direction: column;
+    }
+    .captain-preview-card {
+        width: 100%;
+    }
+}
