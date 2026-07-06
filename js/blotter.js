@@ -1,5 +1,6 @@
 const modal = document.getElementById("blotterModal")
 const blotterTable = document.getElementById("blotter-data")
+
 import { supa, requireAuth } from "./supabase.js";
 document.getElementById("add-blotter-btn").onclick = () => {
     modal.classList.add("show")
@@ -8,6 +9,72 @@ document.getElementById("add-blotter-btn").onclick = () => {
 document.getElementById("closeModal").onclick = () => {
     modal.classList.remove("show")
 };
+
+const fileInput = document.getElementById("blotterFiles");
+const fileList = document.getElementById("selectedFilesList");
+
+const selectedFiles = new DataTransfer();
+
+fileInput.addEventListener("change", () => {
+    // Add newly selected files
+    for (const file of fileInput.files) {
+        selectedFiles.items.add(file);
+    }
+
+    // Update the input's files
+    fileInput.files = selectedFiles.files;
+
+    renderFileList();
+});
+
+function renderFileList() {
+    fileList.innerHTML = "";
+
+    [...selectedFiles.files].forEach((file, index) => {
+        const item = document.createElement("div");
+        item.className = "selected-file";
+
+        item.innerHTML = `
+            <div>
+                📎 <strong>${file.name}</strong><br>
+                <small>${(file.size / 1024).toFixed(1)} KB</small>
+            </div>
+
+            <button type="button" class="remove-file-btn" data-index="${index}">
+                ✕ Remove
+            </button>
+        `;
+
+        fileList.appendChild(item);
+    });
+
+    document.querySelectorAll(".remove-file-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            removeFile(Number(btn.dataset.index));
+        });
+    });
+}
+
+function removeFile(index) {
+    const dt = new DataTransfer();
+
+    [...selectedFiles.files].forEach((file, i) => {
+        if (i !== index) {
+            dt.items.add(file);
+        }
+    });
+
+    // Replace the stored files
+    selectedFiles.items.clear();
+
+    [...dt.files].forEach(file => {
+        selectedFiles.items.add(file);
+    });
+
+    fileInput.files = selectedFiles.files;
+
+    renderFileList();
+}
 
 
 document.getElementById("cancelBtn").onclick = () => {
@@ -19,7 +86,7 @@ window.onclick = (e) => {
         modal.classList.remove("show")
     }
 };
-
+requireAuth()
 
 const container = document.getElementById("complainantContainer");
 const addBtn = document.getElementById("addComplainant");
@@ -119,6 +186,7 @@ async function insertBlotter() {
     }
 
     await insertComplainants(blotter.blotter_id);
+    await uploadBlotterFiles(blotter.blotter_id);
 
     alert("Blotter saved!");
 
@@ -160,6 +228,85 @@ async function insertComplainants(blotterId) {
 
 }
 
+async function uploadBlotterFiles(blotterId) {
+
+    const fileInput = document.getElementById("blotterFiles");
+
+    if (fileInput.files.length === 0) return;
+
+    // Check if folder already exists
+    let { data: folder } = await supa
+        .from("user_files")
+        .select("file_id")
+        .eq("blotter_id", blotterId)
+        .eq("type", "Folder")
+        .maybeSingle();
+
+    // Create folder if it doesn't exist
+    if (!folder) {
+
+        const { data: newFolder, error } = await supa
+            .from("user_files")
+            .insert({
+                file_name: `Blotter ${blotterId}`,
+                type: "Folder",
+                blotter_id: blotterId,
+                uploader_id: (await supa.auth.getUser()).data.user.id
+            })
+            .select("file_id")
+            .single();
+
+        if (error) {
+            console.error(error);
+            return;
+        }
+
+        folder = newFolder;
+    }
+
+    const userId = (await supa.auth.getUser()).data.user.id;
+
+    // Upload every file
+    for (const file of fileInput.files) {
+
+        const path = `Blotter/${blotterId}/${crypto.randomUUID()}-${file.name}`;
+
+        const { data: uploadData, error: uploadError } = await supa.storage
+            .from("Barangay_Files")
+            .upload(path, file);
+
+        if (uploadError) {
+            console.error(uploadError);
+            continue;
+        }
+
+        console.log(uploadData);
+        console.log(uploadError);
+
+        // Save the storage path to the database
+        const { data, error } = await supa
+            .from("user_files")
+            .insert({
+                file_name: file.name,
+                type: "File",
+                storage_path: path,
+                origins_from_folder: folder.file_id,
+                blotter_id: blotterId,
+                uploader_id: userId
+            })
+            .select();
+
+        console.log(data);
+        console.log(error);
+
+        if (error) {
+            await supa.storage
+                .from("Barangay_Files")
+                .remove([path]);
+        }
+    }
+}
+
 async function retrieveBlotterData() {
 
     blotterTable.innerHTML = "";
@@ -184,14 +331,14 @@ async function retrieveBlotterData() {
 
     data.forEach(record => {
 
-        const complainantNames = record.complainant
-            .map(c => c.full_name)
-            .join(", ");
+        const complainantNames = record.complainant.length
+            ? record.complainant.map(c => c.full_name).join(", ")
+            : "None";
 
         rows += `
         <tr>
             <td>${record.blotter_id}</td>
-            <td>${record.incident_date}</td>
+            <td>${new Date(record.incident_date).toLocaleDateString("en-PH")}</td>
             <td>${complainantNames}</td>
             <td>${record.respondent_name}</td>
             <td>${record.incident_type}</td>
@@ -199,7 +346,7 @@ async function retrieveBlotterData() {
             <td>
                 <button
                     class="view-btn"
-                    data-id="${record.blotter_id}">">
+                    data-id="${record.blotter_id}">
                     View
                 </button>
             </td>
@@ -215,12 +362,20 @@ async function viewBlotter(id) {
     const { data, error } = await supa
         .from("blotter")
         .select(`
-            *,
-            complainant (
-                *
-            )
-        `)
+        *,
+        complainant (
+            *
+        ),
+        user_files (
+    file_id,
+    file_name,
+    storage_path,
+    type,
+    modified_at
+)
+    `)
         .eq("blotter_id", id)
+        .neq("user_files.type", "Folder")
         .single();
 
     if (error) {
@@ -247,12 +402,41 @@ async function viewBlotter(id) {
 
     });
 
+    let attachments = "";
+
+    if (data.user_files.length) {
+        data.user_files.forEach(file => {
+            attachments += `
+            <div class="attachment-card">
+                📎
+                <a href="#" class="attachment-link"
+                   data-path="${file.storage_path}">
+                    ${file.file_name}
+                </a>
+            </div>
+        `;
+        });
+    } else {
+        attachments = "<p>No attachments.</p>";
+    }
+
     content.innerHTML = `
 <h3>📄 Blotter Information</h3>
 <p><b>Date:</b> ${data.incident_date}</p>
 <p><b>Time:</b> ${data.incident_time}</p>
 <p><b>Location:</b> ${data.incident_location}</p>
 <p><b>Type:</b> ${data.incident_type}</p>
+<p>
+    <b>Status:</b>
+    <select id="blotterStatus">
+        <option value="Pending" ${data.status === "Pending" ? "selected" : ""}>Pending</option>
+        <option value="Ongoing" ${data.status === "Ongoing" ? "selected" : ""}>Ongoing</option>
+        <option value="Resolved" ${data.status === "Resolved" ? "selected" : ""}>Resolved</option>
+        <option value="Dismissed" ${data.status === "Dismissed" ? "selected" : ""}>Dismissed</option>
+    </select>
+
+    <button id="saveStatusBtn">Save</button>
+</p>
 <p><b>Description:</b></p>
 <div class="description-box">
 ${data.incident_description}
@@ -263,14 +447,59 @@ ${complainants}
 <hr>
 <h3>👥 Respondent</h3>
 <p>${data.respondent_name}</p>
-
+<hr>
+<h3>📎 Attachments</h3>
+${attachments}
 `;
 
+document.getElementById("saveStatusBtn").addEventListener("click", async () => {
+
+    const status = document.getElementById("blotterStatus").value;
+
+    const { error } = await supa
+        .from("blotter")
+        .update({ status })
+        .eq("blotter_id", data.blotter_id);
+
+    if (error) {
+        console.error(error);
+        alert("Failed to update status.");
+        return;
+    }
+
+    alert("Status updated successfully.");
+});
+
     document.getElementById("viewModal").classList.add("show");
+    document.querySelectorAll(".attachment-link").forEach(link => {
+        link.addEventListener("click", async (e) => {
+            e.preventDefault();
+
+            const path = link.dataset.path;
+
+            const { data, error } = await supa.storage
+                .from("Barangay_Files") // your bucket name
+                .download(path);
+
+            if (error) {
+                console.error(error);
+                alert("Unable to open attachment.");
+                return;
+            }
+
+            const blobUrl = URL.createObjectURL(data);
+
+            // Open in new tab
+            window.open(blobUrl, "_blank");
+
+            // Clean up later
+            setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+        });
+    });
 }
 
 async function init() {
-    await requireAuth()
+
     await retrieveBlotterData()
 }
 

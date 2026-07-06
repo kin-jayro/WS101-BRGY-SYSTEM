@@ -1,4 +1,4 @@
-
+import { supa, requireAuth } from "./supabase.js";
 async function signInWithEmail() {
 
     const { data, error } = await supa.auth.signInWithPassword({
