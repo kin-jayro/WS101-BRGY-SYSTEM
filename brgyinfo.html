@@ -18,15 +18,12 @@
         <button id="closeBtn" class="close-btn">&times;</button>
         <h2>Logo</h2>
         <ul class="sidebar-menu">
-            <li>
-                <a href="index.html">
-                    <span>📢</span> Dashboard
-                </a>
-            </li>
+            <li><a href="index.html"><span>🎛️</span> Dashboard</a></li>
             <li><a href="brgyinfo.html" class="active"><span>📝</span> Barangay Information </a></li>
             <li><a href="officials.html"><span>👥</span> Barangay Officials </a></li>
             <li><a href="blotter.html"><span>📖</span> Blotter</a></li>
-            <li><a href="files.html"><span>📖</span> Files </a></li>
+            <li><a href="files.html"><span>📂</span> Files </a></li>
+            <li><a href="landing.html"><span>🏠</span> Home </a></li>
             <li><a href="#"><span>📂</span> Chat Support </a></li>
         </ul>
     </aside>
@@ -36,13 +33,10 @@
         <button id="closeBtn" class="close-btn">&times;</button>
         <h2>Logo</h2>
         <ul class="sidebar-menu">
-            <li>
-                <a href="index.html">
-                    <span>📢</span> Dashboard
-                </a>
-            </li>
+            <li><a href="index.html"><span>🎛️</span> Dashboard</a></li>
             <li><a href="brgyinfo.html" class="active"><span>📝</span> Barangay Information </a></li>
             <li><a href="officials.html"><span>👥</span> Barangay Officials </a></li>
+            <li><a href="landing.html"><span>🏠</span> Home </a></li>
             <li><a href="#"><span>📂</span> Chat Support </a></li>
         </ul>
     </aside>
@@ -64,7 +58,7 @@
 
             <!-- Guest -->
             <div id="guestUser" class="header-right">
-                <button class="login-btn">
+                <button class="login-btn" href="login.html">
                     Login
                 </button>
 
@@ -73,49 +67,138 @@
         </header>
 
         <main class="content">
-            <div class="info-layout">
+            <div class="body-layout">
+                <div class="info-layout">
 
-                <div class="info-sidebar-card">
-                    <div class="logo-wrapper">
-                        <img src="BrgyLogo.jpg">
+                    <div class="info-sidebar-card">
+                        <div class="logo-wrapper">
+                            <img id="barangayLogo" src="" alt="Barangay Logo">
+                        </div>
+
                     </div>
+
+                    <div class="settings-main-card">
+                        <div class="settings-card-header">
+                            <span>ℹ️ Barangay Details</span>
+                        </div>
+
+                        <div id="barangay-data" class="settings-data-display">
+
+                            <div class="display-row">
+                                <span class="field-label">Barangay</span>
+                                <span id="displayBarangay" class="field-value"></span>
+                            </div>
+
+                            <div class="display-row">
+                                <span class="field-label">Municipality</span>
+                                <span id="displayMunicipality" class="field-value"></span>
+                            </div>
+
+                            <div class="display-row">
+                                <span class="field-label">Province</span>
+                                <span id="displayProvince" class="field-value"></span>
+                            </div>
+
+                            <div class="display-row">
+                                <span class="field-label">Phone Number</span>
+                                <span id="displayPhone" class="field-value"></span>
+                            </div>
+
+                            <div class="display-row">
+                                <span class="field-label">Email Address</span>
+                                <span id="displayEmail" class="field-value"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="settings-card-actions ">
+                        <button id="openUpdateModal" type="button" class="update-btn level-3">
+                            ✏️ Update
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="updateModal" class="modal">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h2>✏️ Update Barangay Information</h2>
+
+                        <button id="closeModal" class="modal-close">
+                            &times;
+                        </button>
+                    </div>
+
+                    <form id="barangayForm">
+
+                        <div class="image-section">
+
+                            <img id="logoPreview" src="BrgyLogo.jpg" class="logo-preview" alt="Barangay Logo">
+
+                            <input type="file" id="logoInput" accept="image/*">
+
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label>Barangay Name</label>
+                                <input type="text" id="barangayName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Municipality</label>
+                                <input type="text" id="municipality" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Province</label>
+                                <input type="text" id="province" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" id="phoneNumber">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="emailAddress">
+                            </div>
+
+                        </div>
+
+                        <div class="modal-actions">
+
+                            <button type="button" id="cancelModal" class="cancel-btn">
+
+                                Cancel
+
+                            </button>
+
+                            <button type="submit" class="save-btn">
+
+                                💾 Save Changes
+
+                            </button>
+
+                        </div>
+
+                    </form>
 
                 </div>
 
-                <div class="settings-main-card">
-                    <div class="settings-card-header">
-                        <span>ℹ️ Barangay Details</span>
-                    </div>
-                    <div class="settings-data-display">
-                        <div class="display-row">
-                            <span class="field-label">Barangay</span>
-                            <span class="field-value">Pitipiwpiw Wiw Wiw</span>
-                        </div>
-                        <div class="display-row">
-                            <span class="field-label">Municipality</span>
-                            <span class="field-value">Lipa City</span>
-                        </div>
-                        <div class="display-row">
-                            <span class="field-label">Province</span>
-                            <span class="field-value">Batangas</span>
-                        </div>
-                        <div class="display-row">
-                            <span class="field-label">Phone Number</span>
-                            <span class="field-value">+63 123456789</span>
-                        </div>
-                        <div class="display-row">
-                            <span class="field-label">Email Address</span>
-                            <span class="field-value">barangayUB@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/header.js"></script>
     <script type="module" src="js/supabase.js"></script>
-    <script type="module" src="js/index.js"></script>
+    <script type="module" src="js/info.js"></script>
 </body>
 
 </html>

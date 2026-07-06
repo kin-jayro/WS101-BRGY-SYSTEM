@@ -22,35 +22,15 @@
         <button id="closeBtn" class="close-btn">&times;</button>
         <h2>Logo</h2>
         <ul class="sidebar-menu">
-            <li>
-                <a href="index.html" class="active">
-                    <span>📢</span> Dashboard
-                </a>
-            </li>
+            <li><a href="index.html"><span>🎛️</span> Dashboard</a></li>
             <li><a href="brgyinfo.html"><span>📝</span> Barangay Information </a></li>
             <li><a href="officials.html"><span>👥</span> Barangay Officials </a></li>
-            <li><a href="blotter.html"><span>📖</span> Blotter</a></li>
-            <li><a href="files.html"><span>📖</span> Files </a></li>
+            <li><a href="blotter.html" class="active"><span>📖</span> Blotter</a></li>
+            <li><a href="files.html"><span>📂</span> Files </a></li>
+            <li><a href="landing.html"><span>🏠</span> Home </a></li>
             <li><a href="#"><span>📂</span> Chat Support </a></li>
         </ul>
     </aside>
-
-    
-    <aside id="public-sidebar" class="sidebar level-1">
-        <button id="closeBtn" class="close-btn">&times;</button>
-        <h2>Logo</h2>
-        <ul class="sidebar-menu">
-            <li>
-                <a href="index.html" class="active">
-                    <span>📢</span> Dashboard
-                </a>
-            </li>
-            <li><a href="brgyinfo.html"><span>📝</span> Barangay Information </a></li>
-            <li><a href="officials.html"><span>👥</span> Barangay Officials </a></li>
-            <li><a href="#"><span>📂</span> Chat Support </a></li>
-        </ul>
-    </aside>
-
 
     <!-- Main Area -->
     <div class="main">
@@ -191,6 +171,17 @@
                             </select>
                         </div>
 
+                        <div>
+                            <label>Status <span class="required">*</span></label>
+                            <select id="status" required>
+                                <option value="">-- Select Status --</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Ongoing">Ongoing</option>
+                                <option value="Resolved">Resolved</option>
+                                <option value="Dismissed">Dismissed</option>
+                            </select>
+                        </div>
+
                         <div class="full">
                             <label>Description of Incident <span class="required">*</span></label>
 
@@ -276,6 +267,29 @@
 
                 </div>
 
+                <div class="section">
+
+                    <h3>📎 Attachments</h3>
+
+                    <div class="grid">
+
+                        <div class="full">
+                            <label>Upload Evidence / Supporting Documents</label>
+
+                            <input id="blotterFiles" type="file" multiple
+                                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.mp4,.mov,.avi">
+
+                            <small>
+                                You may select multiple files at once (photos, videos, PDFs, Word documents, etc.).
+                            </small>
+
+                            <div id="selectedFilesList" class="selected-files"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
                 <!-- ================= Actions ================= -->
 
                 <div class="actions">
@@ -295,6 +309,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <script type="module" src="js/header.js"></script>
     <script type="module" src="js/supabase.js"></script>
     <script type="module" src="js/blotter.js"></script>
 

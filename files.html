@@ -22,34 +22,14 @@
         <button id="closeBtn" class="close-btn">&times;</button>
         <h2>Logo</h2>
         <ul class="sidebar-menu">
-            <li>
-                <a href="index.html" class="active">
-                    <span>📢</span> Dashboard
-                </a>
-            </li>
+            <li><a href="index.html"><span>🎛️</span> Dashboard</a></li>
             <li><a href="brgyinfo.html"><span>📝</span> Barangay Information </a></li>
             <li><a href="officials.html"><span>👥</span> Barangay Officials </a></li>
             <li><a href="blotter.html"><span>📖</span> Blotter</a></li>
-            <li><a href="files.html"><span>📖</span> Files </a></li>
+            <li><a href="files.html" class="active"><span>📂</span> Files </a></li>
+            <li><a href="landing.html"><span>🏠</span> Home </a></li>
         </ul>
     </aside>
-
-    
-    <aside id="public-sidebar" class="sidebar level-1">
-        <button id="closeBtn" class="close-btn">&times;</button>
-        <h2>Logo</h2>
-        <ul class="sidebar-menu">
-            <li>
-                <a href="index.html" class="active">
-                    <span>📢</span> Dashboard
-                </a>
-            </li>
-            <li><a href="brgyinfo.html"><span>📝</span> Barangay Information </a></li>
-            <li><a href="officials.html"><span>👥</span> Barangay Officials </a></li>
-            <li><a href="#"><span>📂</span> Chat Support </a></li>
-        </ul>
-    </aside>
-
 
     <!-- Main Area -->
     <div class="main">
@@ -57,7 +37,7 @@
 
         <header class="header">
 
-            <h1>Blotter Records</h1>
+            <h1>Barangay Files</h1>
 
             <!-- Logged In -->
             <div id="loggedInUser" class="header-right auth-only">
@@ -71,32 +51,28 @@
 
             <!-- Guest -->
             <div id="guestUser" class="header-right guest-only">
-                <button class="login-btn">
+                <button class="login-btn" id="login-btn">
                     Login
                 </button>
+            </div>
 
         </header>
         <!-- Content -->
         <main class="content">
-            <div class="page-header">
-                <h2>Barangay Files</h2>
-                <div class="toolbar">
-                    <div class="left-buttons">
-                        <button id="upload_btn">Upload File</button>
-                        <button id="create_folder_btn">Create Folder</button>
-                    </div>
+            <div class="toolbar">
+                <div class="left-buttons">
+                    <button id="upload_btn">Upload File</button>
+                    <button id="create_folder_btn">Create Folder</button>
+                </div>
 
-                    <div class="right-buttons">
-                        <button id="refresh_btn">Refresh</button>
-                    </div>
+                <div class="right-buttons">
+                    <button id="refresh_btn">Refresh</button>
                 </div>
             </div>
-
             <div class="file-list-container">
 
                 <div class="file-row list-header">
                     <div>Name</div>
-                    <div>Owner</div>
                     <div>Last modified</div>
                 </div>
 
@@ -135,10 +111,11 @@
             </dialog>
 
             <div id="fileDropdownMenu" class="dropdown-menu hidden">
-                <button class="file-dropdown-item" data-action="open">Open</button>
-                <button class="file-dropdown-item" data-action="download">Download</button>
-                <button class="file-dropdown-item" id="rename_file" data-action="rename">Rename</button>
-                <button class="file-dropdown-item delete-text" id="delete_file" data-action="delete">Delete</button>
+                <button class="file-dropdown-item level-2 level-3" data-action="open">Open</button>
+                <button class="file-dropdown-item level-2 level-3" data-action="download">Download</button>
+                <button class="file-dropdown-item level-3" id="rename_file" data-action="rename">Rename</button>
+                <button class="file-dropdown-item delete-text level-3" id="delete_file"
+                    data-action="delete">Delete</button>
             </div>
         </main>
 
@@ -146,6 +123,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <script type="module" src="js/header.js"></script>
     <script type="module" src="js/supabase.js"></script>
     <script type="module" src="js/files.js"></script>
 
