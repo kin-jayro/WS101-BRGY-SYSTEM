@@ -22,6 +22,14 @@ body.level-3 #auth-sidebar {
     display: block;
 }
 
+body.level-3 .update-btn, body.level-2 .update-btn {
+    display: block;
+}
+
+body.level-2 .update-btn , body.level-1 .update-btn{
+    display: none;
+}
+
 #loggedInUser,
 #guestUser {
     display: none;
