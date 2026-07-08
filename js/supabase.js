@@ -19,65 +19,67 @@ async function checkSession() {
     return data.session !== null;
 }
 export async function requireAuth() {
+
     const { data, error } = await supa.auth.getSession();
 
-    // Default role
     document.body.classList.add("level-1");
     document.body.classList.remove("level-2", "level-3");
-    const currentPage = window.location.pathname
+
+    const currentPage = window.location.pathname.split("/").pop();
+
     const loggedInUser = document.getElementById("loggedInUser");
     const guestUser = document.getElementById("guestUser");
 
     if (error || !data.session) {
 
-        // Only protect these pages
         const protectedPages = ["blotter.html", "files.html"];
 
         if (protectedPages.includes(currentPage)) {
             window.location.replace("index.html");
-            return false;
+            return null;
         }
 
-        // Public pages stay as Level 1
         loggedInUser.style.display = "none";
         guestUser.style.display = "flex";
+
         document.body.classList.add("ready");
 
-        return true;
+        return "Level 1";
     }
 
     const user = data.session.user;
 
     const welcomeText = document.getElementById("welcomeText");
+
     loggedInUser.style.display = "flex";
     guestUser.style.display = "none";
+
     if (welcomeText) {
         welcomeText.textContent = `Welcome, ${user.email}`;
     }
 
-
-
-    // Get user's level
     const { data: profile } = await supa
         .from("usersdata")
         .select("userrole")
         .eq("id", user.id)
         .single();
 
+    let role = "Level 1";
+
     document.body.classList.remove("level-1", "level-2", "level-3");
 
-    if (profile.userrole === "Level 2") {
-        document.body.classList.add("level-2");
-    } else if (profile.userrole === "Level 3") {
-        document.body.classList.add("level-3");
-    } else {
-        document.body.classList.add("level-1");
+    if (profile?.userrole === "Level 2") {
+        role = "Level 2";
+    } else if (profile?.userrole === "Level 3") {
+        role = "Level 3";
     }
 
-    document.body.classList.add("ready");
-    return true;
-}
+    document.body.classList.add(role.toLowerCase().replace(" ", "-"));
 
+    document.body.classList.add("ready");
+
+    return role;
+}
 async function checkUserData() {
 
     const { data: sessionData } = await supa.auth.getSession();

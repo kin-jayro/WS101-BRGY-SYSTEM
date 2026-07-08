@@ -11,6 +11,17 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft header shadow */
 }
 
+
+.barangay-logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+
 /* Clear floating positions and match the clean blue box look */
 .menu-toggle-top {
     position: static !important; /* Strips out any sidebar positioning rules */

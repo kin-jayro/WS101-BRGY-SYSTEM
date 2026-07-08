@@ -1,13 +1,22 @@
 import { supa, requireAuth } from "./supabase.js";
-async function init() {
-    await requireAuth()
-}
+
 
 init()
 
 const modal = document.getElementById("postModal");
 
 const openBtn = document.getElementById("addPostBtn");
+async function init() {
+    const role = await requireAuth();
+
+    console.log(role);
+
+    if (role === "Level 1") {
+        openBtn.style.display = "none";
+    }
+}
+
+init();
 const closeBtn = document.getElementById("closeModal");
 const cancelBtn = document.getElementById("cancelPost");
 const attachmentInput = document.getElementById("attachments");
@@ -343,6 +352,8 @@ form.addEventListener("submit", async (e) => {
 
             });
 
+            await uploadAnnouce()
+
     }
 
     else if (type === "news") {
@@ -360,6 +371,8 @@ form.addEventListener("submit", async (e) => {
                 status: document.getElementById("status").value
 
             });
+
+           await uploadNews()
 
     }
 
@@ -382,7 +395,7 @@ form.addEventListener("submit", async (e) => {
                 status: document.getElementById("status").value
 
             });
-
+            await uploadEvent()
     }
 
     if (result.error) {
@@ -436,10 +449,11 @@ async function uploadNews() {
         alert(error.message);
         return;
     }
+    const files = document.getElementById("attachments").files
 
-    for (const file of attachmentInput.files) {
+    for (const file of files) {
 
-        const path = `${data.news_id}/${Date.now()}-${file.name}`;
+        const path = `${file.name}`;
 
         const { error: uploadError } = await supa.storage
             .from("news")
@@ -480,10 +494,12 @@ async function uploadAnnouce() {
         alert(error.message);
         return;
     }
+    const files = document.getElementById("attachments").files
+    console.log(files);
+    console.log(files);
+    for (const file of files) {
 
-    for (const file of attachmentInput.files) {
-
-        const path = `${data.announcement_id}/${Date.now()}-${file.name}`;
+        const path = `${file.name}`;
 
         const { error: uploadError } = await supa.storage
             .from("announcements")
@@ -528,9 +544,11 @@ async function uploadEvent() {
         return;
     }
 
-    for (const file of attachmentInput.files) {
+    const files = document.getElementById("attachments").files
 
-        const path = `${data.event_id}/${Date.now()}-${file.name}`;
+    for (const file of files) {
+
+        const path = `${file.name}`;
 
         const { error: uploadError } = await supa.storage
             .from("events")
@@ -625,7 +643,7 @@ function displayPost(type, post, attachments) {
 
     if (type === "announcement") {
 
-        readContent.textContent = post.content;
+        readContent.innerHTML = linkify(post.content);
 
         if (attachments.length > 0) {
 
@@ -651,7 +669,7 @@ function displayPost(type, post, attachments) {
 
     else if (type === "news") {
 
-        readContent.textContent = post.content;
+        readContent.innerHTML = linkify(post.content);
 
         const images = attachments.filter(file => file.file_type === "image");
         console.log("News Images:", images);
@@ -679,7 +697,7 @@ function displayPost(type, post, attachments) {
 
     else {
 
-        readContent.textContent = post.description;
+        readContent.innerHTML = linkify(post.description);
 
         eventInfo.style.display = "block";
 
@@ -712,4 +730,19 @@ function displayPost(type, post, attachments) {
 
     document.getElementById("readModal").classList.add("show");
 
+}
+
+function linkify(text) {
+    if (!text) return "";
+
+    // Escape HTML first
+    const div = document.createElement("div");
+    div.textContent = text;
+    let escaped = div.innerHTML;
+
+    // Convert URLs into links
+    return escaped.replace(
+        /(https?:\/\/[^\s]+)/g,
+        '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>'
+    );
 }
