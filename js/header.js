@@ -31,17 +31,14 @@ async function loadBarangayInfo() {
     const { data, error } = await supa
         .from("barangay_information")
         .select("logo_url")
-        .limit(1)
-        .single();
 
     if (error) {
         console.error("Failed to load barangay information:", error);
         return;
     }
 
-    if (data?.logo_url && barangayLogo) {
-        barangayLogo.src = data.logo_url;
-    }
+    console.log(data)
+    barangayLogo.src = data[0].logo_url;
 
 }
 
