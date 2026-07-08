@@ -207,6 +207,54 @@
 
     </div>
 
+    <div id="emailModal" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close-modal">&times;</span>
+
+            <h2>Send Email</h2>
+
+            <form id="emailForm">
+
+                <input type="hidden" id="requestId">
+
+                <div class="form-group">
+
+                    <label>To</label>
+
+                    <input type="email" id="recipientEmail" readonly>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Subject</label>
+
+                    <input type="text" id="emailSubject" placeholder="Subject">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Message</label>
+
+                    <textarea id="emailMessage" rows="8" placeholder="Type your message..."></textarea>
+
+                </div>
+
+                <button type="submit" class="submit-request">
+
+                    Send Email
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script type="module" src="js/supabase.js"></script>
     <script type="module" src="js/header.js"></script>

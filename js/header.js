@@ -3,6 +3,20 @@ import { supa } from "./supabase.js";
 const authSidebar = document.getElementById("auth-sidebar");
 const publicSidebar = document.getElementById("public-sidebar");
 
+const logoutBtn = document.getElementById("logoutBtn");
+
+logoutBtn.addEventListener("click", async () => {
+
+    const { error } = await supa.auth.signOut();
+
+    if (error) {
+        alert(error.message);
+        return;
+    }
+
+    window.location.href = "landing.html";
+
+});
 const menuBtn = document.getElementById("menuBtn");
 const overlay = document.getElementById("overlay");
 

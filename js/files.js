@@ -121,10 +121,6 @@ async function loadFiles() {
             minute: "2-digit",
         })}
                     </div>
-
-                    <div class="action-btn-container">
-                        <button class="action-btn">⋮</button>
-                    </div>
                 </div>
             </div>
         `;
@@ -192,8 +188,7 @@ async function uploadFileFolder(type) {
         return;
     }
 
-    const title =
-        document.getElementById("fileTitleInput").value.trim() || file.name;
+    const title = file.name;
 
     const storagePath = `${user.id}/${crypto.randomUUID()}-${file.name}`;
 
@@ -228,9 +223,6 @@ async function uploadFileFolder(type) {
         alert(dbError.message);
         return;
     }
-
-    document.getElementById("fileTitleInput").value = "";
-    document.getElementById("fileDescriptionInput").value = "";
     document.getElementById("fileInput").value = "";
 
     closeFileModal();
@@ -266,31 +258,6 @@ fileListBody.addEventListener("click", (event) => {
 
         dropdownFileMenu.classList.remove("hidden");
     }
-});
-
-dropdownFileMenu.addEventListener('click', function (event) {
-    const clickedItem = event.target.closest('.file-dropdown-item');
-    if (!clickedItem) return;
-
-    const action = clickedItem.dataset.action;
-
-
-    if (action === 'download') {
-
-    } else if (action === 'delete') {
-
-
-    } else if (action === 'rename') {
-
-    } else if (action === 'open') {
-
-    }
-
-    console.log(`User wants to ${action} file ID: ${activeFileId} ${activeFileLink}`);
-
-
-    // Hide the menu after they make a selection
-    dropdownFileMenu.classList.add('hidden');
 });
 
 

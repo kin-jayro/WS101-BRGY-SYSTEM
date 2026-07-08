@@ -85,10 +85,80 @@
     background:#2980b9;
 }
 
+.modal{
+
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    z-index:2000;
+
+    justify-content:center;
+    align-items:center;
+
+}
+
+.modal.show{
+
+    display:flex;
+
+}
+
+.modal-content{
+
+    background:#fff;
+    width:95%;
+    max-width:600px;
+    border-radius:15px;
+    padding:25px;
+    position:relative;
+
+}
+
+.close-modal{
+
+    position:absolute;
+    right:20px;
+    top:15px;
+
+    font-size:28px;
+    cursor:pointer;
+
+}
+
+.email-btn{
+
+    background:#1565c0;
+    color:#fff;
+    border:none;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+
+}
+
+.modal textarea{
+
+    width:100%;
+    resize:vertical;
+
+}
+
+.modal input,
+.modal textarea{
+
+    width:100%;
+    padding:12px;
+    margin-top:6px;
+    margin-bottom:16px;
+    border:1px solid #ccc;
+    border-radius:8px;
+
+}
+
 @media(max-width:900px){
 
     .actions{
         flex-direction:column;
     }
-
 }
