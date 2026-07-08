@@ -5,6 +5,22 @@ async function init() {
 }
 init()
 
+async function loadTotalPopulation() {
+    const { count, error } = await supa
+        .from("residentinfo")
+        .select("*", { count: "exact", head: true });
+
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    document.getElementById("totalPopulation").textContent =
+        count.toLocaleString();
+}
+
+await loadTotalPopulation()
+
 async function loadAnnouncements() {
 
     const { data, error } = await supa
