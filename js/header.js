@@ -1,3 +1,5 @@
+import { supa } from "./supabase.js";
+
 const authSidebar = document.getElementById("auth-sidebar");
 const publicSidebar = document.getElementById("public-sidebar");
 
@@ -5,6 +7,29 @@ const menuBtn = document.getElementById("menuBtn");
 const overlay = document.getElementById("overlay");
 
 const loginBtn = document.querySelector(".login-btn");
+
+const barangayLogo = document.getElementById("barangay-logo");
+
+loadBarangayInfo();
+
+async function loadBarangayInfo() {
+
+    const { data, error } = await supa
+        .from("barangay_information")
+        .select("logo_url")
+        .limit(1)
+        .single();
+
+    if (error) {
+        console.error("Failed to load barangay information:", error);
+        return;
+    }
+
+    if (data?.logo_url && barangayLogo) {
+        barangayLogo.src = data.logo_url;
+    }
+
+}
 
 if (loginBtn) {
     loginBtn.addEventListener("click", () => {
@@ -54,3 +79,4 @@ window.addEventListener("resize", () => {
         closeSidebar();
     }
 });
+

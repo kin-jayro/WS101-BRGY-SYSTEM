@@ -1,0 +1,94 @@
+.requests-card{
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.table-responsive{
+    overflow-x:auto;
+}
+
+.request-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.request-table th{
+    background:#1f2937;
+    color:#fff;
+    padding:14px;
+}
+
+.request-table td{
+    padding:14px;
+    border-bottom:1px solid #eee;
+}
+
+.request-table tr:hover{
+    background:#f7f9fc;
+}
+
+.status{
+    padding:6px 12px;
+    border-radius:20px;
+    color:#fff;
+    font-size:13px;
+}
+
+.pending{
+    background:#f39c12;
+}
+
+.approved{
+    background:#2ecc71;
+}
+
+.rejected{
+    background:#e74c3c;
+}
+
+.file-ready{
+    background:#3498db;
+}
+
+.completed{
+    background:#16a085;
+}
+
+.cancelled{
+    background:#7f8c8d;
+}
+
+.actions{
+    display:flex;
+    gap:8px;
+}
+
+.actions button{
+    border:none;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    color:#fff;
+}
+
+.approve-btn{
+    background:#27ae60;
+}
+
+.reject-btn{
+    background:#c0392b;
+}
+
+.view-btn{
+    background:#2980b9;
+}
+
+@media(max-width:900px){
+
+    .actions{
+        flex-direction:column;
+    }
+
+}

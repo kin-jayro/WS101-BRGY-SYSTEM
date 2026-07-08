@@ -126,30 +126,6 @@
     justify-content:center;
 }
 
-.history-card{
-
-    margin-top:30px;
-}
-
-table{
-
-    width:100%;
-    border-collapse:collapse;
-}
-
-th{
-
-    background:#1e88e5;
-    color:white;
-}
-
-th,
-td{
-
-    padding:14px;
-    text-align:left;
-}
-
 tbody tr:nth-child(even){
 
     background:#f6f6f6;
@@ -163,29 +139,12 @@ tbody tr:nth-child(even){
     font-weight:bold;
 }
 
-.pending{
-
-    background:#fff4cc;
-    color:#8a6d00;
-}
-
-.approved{
-
-    background:#d9f8df;
-    color:#1b7a33;
-}
-
-.rejected{
-
-    background:#ffdede;
-    color:#b71c1c;
-}
 
 @media(max-width:900px){
 
     .request-container{
 
-        grid-template-columns:1fr;
+        grid-template-columns:2fr;
     }
 
     .form-row{
@@ -194,3 +153,4 @@ tbody tr:nth-child(even){
     }
 
 }
+

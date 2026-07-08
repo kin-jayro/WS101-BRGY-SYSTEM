@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Barangay Portal</title>
     <link rel="stylesheet" href="styles/landing.css">
 </head>
+
 <body>
 
     <nav class="landing-navbar">
         <div class="nav-brand">
-            <img src="BrgyLogo.jpg" alt="Barangay Logo" class="nav-logo">
+            <img id="barangay-logo" src="BrgyLogo.jpg" alt="Barangay Logo" class="nav-logo">
             <div class="brand-text">
                 <span class="brand-title">BARANGAY PORTAL</span>
                 <span class="brand-sub">Official Community Portal</span>
@@ -27,8 +29,9 @@
         <div class="hero-content">
             <span class="welcome-tagline">MABUHAY!</span>
             <h1>Welcome to the Official Portal of <br><span class="highlight-gold">Barangay Records</span></h1>
-            <p>Providing efficient public services, transparent governance, and real-time community updates right at your fingertips.</p>
-            
+            <p>Providing efficient public services, transparent governance, and real-time community updates right at
+                your fingertips.</p>
+
             <div class="hero-action-buttons">
                 <a href="index.html" class="btn-primary">🔑 Access Portal Login</a>
                 <a href="#features" class="btn-secondary">Explore Features</a>
@@ -43,12 +46,13 @@
         </div>
 
         <div class="services-container-grid">
-            
+
             <div class="service-teaser-card">
                 <div class="card-icon-circle">📢</div>
                 <div class="card-text-content">
                     <h3>Public Dashboard</h3>
-                    <p>Tracks live community population statistics, hosts real-time urgent announcements, distributes localized news releases, and calendars upcoming neighborhood activities seamlessly.</p>
+                    <p>Tracks live community population statistics, hosts real-time urgent announcements, distributes
+                        localized news releases, and calendars upcoming neighborhood activities seamlessly.</p>
                 </div>
             </div>
 
@@ -56,7 +60,8 @@
                 <div class="card-icon-circle">👥</div>
                 <div class="card-text-content">
                     <h3>Barangay Officials Management</h3>
-                    <p>Maintains directory profiles of actively serving community officials. Includes tracking systems for distinct leadership roles, active service durations, and contact channels.</p>
+                    <p>Maintains directory profiles of actively serving community officials. Includes tracking systems
+                        for distinct leadership roles, active service durations, and contact channels.</p>
                 </div>
             </div>
 
@@ -64,7 +69,8 @@
                 <div class="card-icon-circle">ℹ️</div>
                 <div class="card-text-content">
                     <h3>Barangay Information</h3>
-                    <p>Provides a static, centralized overview of foundational jurisdiction metrics, location data, province listings, hotlines, and official organizational contact points securely.</p>
+                    <p>Provides a static, centralized overview of foundational jurisdiction metrics, location data,
+                        province listings, hotlines, and official organizational contact points securely.</p>
                 </div>
             </div>
 
@@ -72,7 +78,8 @@
                 <div class="card-icon-circle">📖</div>
                 <div class="card-text-content">
                     <h3>Blotter Records Registry</h3>
-                    <p>Handles structured data management for community peace, security logs, legal classifications, incident details, and structural status tracking metrics safely.</p>
+                    <p>Handles structured data management for community peace, security logs, legal classifications,
+                        incident details, and structural status tracking metrics safely.</p>
                 </div>
             </div>
 
@@ -83,5 +90,9 @@
         <p>&copy; 2026 Barangay Pitipiwpiw wiw wiw All Rights Reserved.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/supabase.js"></script>
+    <script type="module" src="js/header.js"></script>
 </body>
+
 </html>

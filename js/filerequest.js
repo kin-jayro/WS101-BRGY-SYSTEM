@@ -5,6 +5,14 @@ async function init() {
 
 init()
 
+const documentIds = {
+    "Barangay Clearance": 1,
+    "Certificate of Residency": 2,
+    "Certificate of Indigency": 3,
+    "Business Permit Clearance": 4,
+    "First Time Job Seeker Certificate": 5
+};
+
 
 const form = document.getElementById("requestForm");
 
@@ -22,6 +30,8 @@ form.addEventListener("submit", async (e) => {
         return;
     }
 
+    const num = document.getElementById("contactNumber").value.trim()
+
     const documentName =
         document.getElementById("documentType").value;
 
@@ -33,26 +43,44 @@ form.addEventListener("submit", async (e) => {
 
     const documentId = documentIds[documentName];
 
-    const { data: request, error } = await supa
+    const file = document.getElementById("supportingDocuments").files[0];
+
+    let filePath = null;
+
+    if (file) {
+        const fileExt = file.name.split(".").pop();
+        const fileName = `${crypto.randomUUID()}.${fileExt}`;
+
+        filePath = `${user.id}/${fileName}`;
+
+        const { error: uploadError } = await supa.storage
+            .from("supporting-documents")
+            .upload(filePath, file);
+
+        if (uploadError) {
+            alert(uploadError.message);
+            return;
+        }
+    }
+
+    const { data: file_requests, error } = await supa
         .from("file_requests")
         .insert({
-
             user_id: user.id,
-            document_id: documentId,
-            purpose: purpose,
-            remarks: remarks
-
+            document_type: documentName,
+            purpose,
+            remarks,
+            number: num,
+            files_path: filePath ? [filePath] : [],
+            notes: document.getElementById("remarks").value.trim()
         })
         .select()
         .single();
 
-    if (error) {
-
-        console.error(error);
-        alert(error.message);
-        return;
+    if (!error) {
+form.reset();
     }
 
     alert("Request submitted successfully!");
-
+    
 });
