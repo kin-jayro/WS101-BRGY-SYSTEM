@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/filerequest.css">
+</head>
+
+<body>
+
+    <!-- Sidebar Toggle -->
+    <button id="menuBtn" class="menu-btn">&#9776;</button>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Sidebar -->
+    <aside id="auth-sidebar" class="sidebar level-2 level-3">
+        <button id="closeBtn" class="close-btn">&times;</button>
+        <h2>Logo</h2>
+
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><span>🎛️</span> Dashboard</a></li>
+            <li><a href="announcementsandevents.html"><span>📢</span> Announcements & Events</a></li>
+            <li><a href="brgyinfo.html"><span>📝</span> Barangay Information</a></li>
+            <li><a href="officials.html"><span>👥</span> Barangay Officials</a></li>
+            <li><a href="filerequest.html"><span>📄</span> File Request</a></li>
+            <li><a href="landing.html"><span>🏠</span> Home</a></li>
+
+            <h3>Admin Panel</h3>
+            <li><a href="blotter.html"><span>📖</span> Blotter</a></li>
+            <li><a href="files.html"><span>📂</span> File Management</a></li>
+            <li><a href="requestmanagement.html" class="active"><span>📄</span> File Request Management</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Main Area -->
+    <div class="main">
+        <header class="header">
+
+            <h1>File Request Management</h1>
+
+            <!-- Logged In -->
+            <div id="loggedInUser" class="header-right auth-only">
+                <span id="welcomeText">Welcome, User</span>
+
+                <button id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+            </div>
+
+            <!-- Guest -->
+            <div id="guestUser" class="header-right guest-only">
+                <button class="login-btn">
+                    Login
+                </button>
+
+        </header>
+        <!-- Content -->
+        <main class="content">
+        </main>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module" src="js/header.js"></script>
+    <script type="module" src="js/supabase.js"></script>
+    <script type="module" src="js/filerequest.js"></script>
+
+</body>
+
+</html>
