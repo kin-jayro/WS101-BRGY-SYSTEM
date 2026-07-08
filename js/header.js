@@ -21,8 +21,8 @@ const menuBtn = document.getElementById("menuBtn");
 const overlay = document.getElementById("overlay");
 
 const loginBtn = document.querySelector(".login-btn");
+const logos = document.querySelectorAll(".barangay-logo");
 
-const barangayLogo = document.getElementById("barangay-logo");
 
 loadBarangayInfo();
 
@@ -31,14 +31,16 @@ async function loadBarangayInfo() {
     const { data, error } = await supa
         .from("barangay_information")
         .select("logo_url")
+        .single();
 
     if (error) {
         console.error("Failed to load barangay information:", error);
         return;
     }
 
-    console.log(data)
-    barangayLogo.src = data[0].logo_url;
+    logos.forEach(img => {
+        img.src = data.logo_url;
+    });
 
 }
 
