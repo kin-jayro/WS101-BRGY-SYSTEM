@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Portal | Sign Up</title>
+
+    <link rel="stylesheet" href="styles/signup.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <h1>Barangay Portal</h1>
+
+        <button class="header-buttons"
+            onclick="window.location.href='index.html'">
+            Home
+        </button>
+
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h2>Create Account</h2>
+
+            <p class="subtitle">
+                Register to access online barangay services.
+            </p>
+
+            <form id="signup-form">
+                <label>Email</label>
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    required>
+
+                <label>Password</label>
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Minimum 6 characters"
+                    required>
+
+                <label>Confirm Password</label>
+                <input
+                    id="confirmPassword"
+                    type="password"
+                    placeholder="Confirm password"
+                    required>
+
+                <button
+                    id="signup-btn"
+                    type="submit">
+                    Create Account
+                </button>
+
+            </form>
+
+            <p class="login-text">
+                Already have an account?
+
+                <a href="login.html">
+                    Sign In
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module" src="js/supabase.js"></script>
+    <script type="module" src="js/signup.js"></script>
+
+</body>
+
+</html>

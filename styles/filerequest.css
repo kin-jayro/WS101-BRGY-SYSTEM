@@ -1,0 +1,196 @@
+.content{
+
+    padding:30px;
+}
+
+.request-container{
+
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+}
+
+.request-form-card,
+.info-card,
+.history-card{
+
+    background:white;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    padding:25px;
+}
+
+.card-header{
+
+    margin-bottom:20px;
+}
+
+.card-header h2{
+
+    margin-bottom:5px;
+}
+
+.form-row{
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.form-group{
+
+    display:flex;
+    flex-direction:column;
+    margin-bottom:18px;
+}
+
+.form-group label{
+
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+
+    padding:13px;
+    border-radius:10px;
+    border:1px solid #d6d6d6;
+    font-size:15px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+
+    outline:none;
+    border-color:#1e88e5;
+}
+
+.upload-box{
+
+    border:2px dashed #bdbdbd;
+    padding:35px;
+    text-align:center;
+    border-radius:12px;
+}
+
+.submit-request{
+
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#1e88e5;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.submit-request:hover{
+
+    background:#1565c0;
+}
+
+.info-card{
+
+    margin-bottom:20px;
+}
+
+.steps{
+
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.step{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.step span{
+
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#1e88e5;
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.history-card{
+
+    margin-top:30px;
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+
+    background:#1e88e5;
+    color:white;
+}
+
+th,
+td{
+
+    padding:14px;
+    text-align:left;
+}
+
+tbody tr:nth-child(even){
+
+    background:#f6f6f6;
+}
+
+.status{
+
+    padding:6px 15px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.pending{
+
+    background:#fff4cc;
+    color:#8a6d00;
+}
+
+.approved{
+
+    background:#d9f8df;
+    color:#1b7a33;
+}
+
+.rejected{
+
+    background:#ffdede;
+    color:#b71c1c;
+}
+
+@media(max-width:900px){
+
+    .request-container{
+
+        grid-template-columns:1fr;
+    }
+
+    .form-row{
+
+        grid-template-columns:1fr;
+    }
+
+}
