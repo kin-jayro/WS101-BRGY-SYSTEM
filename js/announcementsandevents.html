@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/announcementsandevents.css">
+    <link rel="stylesheet" href="styles/blotter.css">
+</head>
+
+<body>
+
+    <!-- Sidebar Toggle -->
+    <button id="menuBtn" class="menu-btn">&#9776;</button>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Sidebar -->
+    <aside id="auth-sidebar" class="sidebar level-2 level-3">
+        <button id="closeBtn" class="close-btn">&times;</button>
+        <img class="barangay-logo" src="BrgyLogo.jpg">
+
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><span>🎛️</span> Dashboard</a></li>
+            <li><a href="announcementsandevents.html" class="active"><span>📢</span> Announcements & Events</a></li>
+            <li><a href="brgyinfo.html"><span>📝</span> Barangay Information</a></li>
+            <li><a href="officials.html"><span>👥</span> Barangay Officials</a></li>
+            <li><a href="filerequest.html"><span>📄</span> File Request</a></li>
+            <li><a href="blotter.html"><span>📖</span> Blotter</a></li>
+            <li><a href="survey.html"><span>📝</span> Survey</a></li>
+
+            <h3>Admin Panel</h3>
+            <li><a href="files.html"><span>📂</span> File Management</a></li>
+            <li><a href="requestmanagement.html"><span>📄</span> File Requests</a></li>
+        </ul>
+    </aside>
+
+    <aside id="public-sidebar" class="sidebar level-1">
+        <button id="closeBtn" class="close-btn">&times;</button>
+        <img class="barangay-logo" src="BrgyLogo.jpg">
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><span>🎛️</span> Dashboard</a></li>
+            <li><a href="announcementsandevents.html" class="active"><span>📢</span> Announcements and Events</a></li>
+            <li><a href="brgyinfo.html"><span>📝</span> Barangay Information</a></li>
+            <li><a href="officials.html"><span>👥</span> Barangay Officials</a></li>
+            <li><a href="filerequest.html"><span>📄</span> File Request</a></li>
+            <li><a href="blotter.html"><span>📖</span> Blotter</a></li>
+            <li><a href="survey.html"><span>📝</span> Survey</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Main Area -->
+    <div class="main">
+        <header class="header">
+
+            <h1>Announcements and Events</h1>
+
+            <!-- Logged In -->
+            <div id="loggedInUser" class="header-right auth-only">
+                <span id="welcomeText">Welcome, User</span>
+
+                <button id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+            </div>
+
+            <!-- Guest -->
+            <div id="guestUser" class="header-right guest-only">
+                <button class="login-btn">
+                    Login
+                </button>
+
+        </header>
+        <!-- Content -->
+        <main class="content">
+
+            <!-- Hero -->
+            <section class="hero-card">
+
+                <div>
+                    <h2>📢 Community Bulletin</h2>
+                    <p>
+                        Stay updated with the latest announcements, upcoming barangay events,
+                        and important community news.
+                    </p>
+                </div>
+
+                <div class="hero-search">
+                    <input id="searchPost" type="text" placeholder="Search announcements or events...">
+                </div>
+
+            </section>
+
+            <!-- Filters -->
+            <div id="filterBar" class="filter-bar">
+
+                <div id="filterButtons" class="filter-left">
+                    <button id="filterAll" class="filter-btn active">All</button>
+                    <button id="filterAnnouncement" class="filter-btn">Announcements</button>
+                    <button id="filterEvent" class="filter-btn">Events</button>
+                    <button id="filterNews" class="filter-btn">News</button>
+                </div>
+
+                <button id="addPostBtn" class="add-post-btn level-2 level-3">
+                    ➕ Add Announcement / Event / News
+                </button>
+
+            </div>
+
+            <!-- Cards -->
+
+            <div id="postsGridList" class="post-grid">
+
+                <!-- Announcement -->
+
+                <div class="post-card announcement">
+
+                    <div class="post-type announcement-tag">
+                        📢 Announcement
+                    </div>
+
+                    <h3>Water Interruption Notice</h3>
+
+                    <p>
+                        Water service will be temporarily unavailable due to scheduled
+                        maintenance.
+                    </p>
+
+                    <div class="post-footer">
+
+                        <span>🕒 2 hours ago</span>
+
+                        <button class="read-btn">
+                            Read More
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- Event -->
+
+                <div class="post-card event">
+
+                    <div class="post-type event-tag">
+                        📅 Event
+                    </div>
+
+                    <h3>Medical Mission</h3>
+
+                    <p>
+                        Free medical consultation, dental check-up, and medicines for
+                        residents.
+                    </p>
+
+                    <div class="post-footer">
+
+                        <span>📍 Barangay Covered Court</span>
+
+                        <button class="read-btn">
+                            Details
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- News -->
+
+                <div class="post-card news">
+
+                    <div class="post-type news-tag">
+                        📰 News
+                    </div>
+
+                    <h3>Road Improvement Completed</h3>
+
+                    <p>
+                        The rehabilitation of Mabini Street has officially been completed
+                        ahead of schedule.
+                    </p>
+
+                    <div class="post-footer">
+
+                        <span>July 6, 2026</span>
+
+                        <button class="read-btn">
+                            Read More
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+        <!-- Add Post Modal -->
+        <div id="postModal" class="modal">
+
+            <div class="modal-card">
+
+                <div class="modal-header">
+                    <h2>Create Post</h2>
+                    <button id="closeModal" class="close-btn">&times;</button>
+                </div>
+
+                <form id="postForm">
+
+                    <div class="section">
+
+                        <div class="grid">
+
+                            <!-- Type -->
+                            <div class="full">
+                                <label>
+                                    Content Type <span class="required">*</span>
+                                </label>
+
+                                <select id="postType" required>
+                                    <option value="announcement">Announcement</option>
+                                    <option value="news">News</option>
+                                    <option value="event">Event</option>
+                                </select>
+                            </div>
+
+                            <!-- Common -->
+
+                            <div class="full">
+                                <label>
+                                    Title <span class="required">*</span>
+                                </label>
+
+                                <input type="text" id="title" required>
+                            </div>
+
+                            <!-- Announcement / News -->
+
+                            <div id="contentGroup" class="full">
+
+                                <label>
+                                    Content <span class="required">*</span>
+                                </label>
+
+                                <textarea id="content" rows="6"></textarea>
+
+                            </div>
+
+                            <!-- News only -->
+
+                            <div id="authorGroup">
+
+                                <label>Author</label>
+
+                                <input type="text" id="author">
+
+                            </div>
+
+                            <!-- Event -->
+
+                            <div id="eventFields" class="full">
+
+                                <div class="grid">
+
+                                    <div class="full">
+
+                                        <label>
+                                            Description
+                                            <span class="required">*</span>
+                                        </label>
+
+                                        <textarea id="eventDescription" rows="5"></textarea>
+
+                                    </div>
+
+                                    <div>
+
+                                        <label>
+                                            Event Date
+                                            <span class="required">*</span>
+                                        </label>
+
+                                        <input type="date" id="eventDate">
+
+                                    </div>
+
+                                    <div>
+
+                                        <label>Time</label>
+
+                                        <input type="time" id="eventTime">
+
+                                    </div>
+
+                                    <div class="full">
+
+                                        <label>Location</label>
+
+                                        <input type="text" id="eventLocation">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Attachments -->
+                            <div id="attachmentGroup" class="full">
+
+                                <label id="attachmentLabel">
+                                    Attachments
+                                </label>
+
+                                <input type="file" id="attachments" multiple>
+
+                                <small id="attachmentHint">
+                                    Upload files.
+                                </small>
+
+                                <div id="selectedFiles" class="selected-files"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="actions">
+
+                        <button type="button" id="cancelPost">
+                            Cancel
+                        </button>
+
+                        <button type="submit">
+                            Save
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div id="readModal" class="modal">
+
+            <div class="modal-card view-card">
+
+                <div class="modal-header">
+
+                    <h2 id="readTitle"></h2>
+
+                    <button id="closeReadModal" class="close-btn">&times;</button>
+
+                </div>
+
+                <!-- Images -->
+                <div id="imageGallery" class="image-gallery"></div>
+
+                <!-- Body -->
+                <div class="section">
+
+                    <p id="readContent"></p>
+
+                    <div id="eventInfo"></div>
+
+                    <div id="attachmentList"></div>
+
+                </div>
+
+                <div class="actions">
+
+                    <button type="button" id="closeReadBtn">
+                        Close
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module" src="js/supabase.js"></script>
+    <script type="module" src="js/header.js"></script>
+    <script type="module" src="js/announcementsandevents.js"></script>
+
+</body>
+
+</html>

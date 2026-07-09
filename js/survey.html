@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/survey.css">
+</head>
+
+<body>
+
+    <!-- Sidebar Toggle -->
+    <button id="menuBtn" class="menu-btn">&#9776;</button>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Sidebar -->
+    <aside id="auth-sidebar" class="sidebar level-2 level-3">
+        <button id="closeBtn" class="close-btn">&times;</button>
+        <img class="barangay-logo" src="BrgyLogo.jpg">
+
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><span>🎛️</span> Dashboard</a></li>
+            <li><a href="announcementsandevents.html" <span>📢</span> Announcements & Events</a></li>
+            <li><a href="brgyinfo.html"><span>📝</span> Barangay Information</a></li>
+            <li><a href="officials.html"><span>👥</span> Barangay Officials</a></li>
+            <li><a href="filerequest.html"><span>📄</span> File Request</a></li>
+            <li><a href="blotter.html"><span>📖</span> Blotter</a></li>
+            <li><a href="survey.html" class="active"><span>📝</span> Survey</a></li>
+
+            <h3>Admin Panel</h3>
+            <li><a href="files.html"><span>📂</span> File Management</a></li>
+            <li><a href="requestmanagement.html"><span>📄</span> File Requests</a></li>
+        </ul>
+    </aside>
+
+    <aside id="public-sidebar" class="sidebar level-1">
+        <button id="closeBtn" class="close-btn">&times;</button>
+        <img class="barangay-logo" src="BrgyLogo.jpg">
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><span>🎛️</span> Dashboard</a></li>
+            <li><a href="announcementsandevents.html"><span>📢</span> Announcements and Events</a></li>
+            <li><a href="brgyinfo.html"><span>📝</span> Barangay Information</a></li>
+            <li><a href="officials.html"><span>👥</span> Barangay Officials</a></li>
+            <li><a href="filerequest.html"><span>📄</span> File Request</a></li>
+            <li><a href="blotter.html"><span>📖</span> Blotter</a></li>
+            <li><a href="survey.html" class="active"><span>📝</span> Survey</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Main Area -->
+    <div class="main">
+        <header class="header">
+
+            <h1>Announcements and Events</h1>
+
+            <!-- Logged In -->
+            <div id="loggedInUser" class="header-right auth-only">
+                <span id="welcomeText">Welcome, User</span>
+
+                <button id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+            </div>
+
+            <!-- Guest -->
+            <div id="guestUser" class="header-right guest-only">
+                <button class="login-btn">
+                    Login
+                </button>
+
+        </header>
+        <!-- Content -->
+        <main class="content">
+            <section id="postsContainer"></section>
+
+            <!-- Surveys -->
+            <section class="survey-section">
+
+                <div class="section-header">
+
+                    <h2>📋 Community Surveys</h2>
+
+                    <button id="createSurveyBtn" class="auth-only">
+                        + Create Survey
+                    </button>
+
+                </div>
+
+                <div id="surveyList" class="survey-list">
+
+                    <!-- Loaded dynamically -->
+
+                </div>
+
+            </section>
+
+        </main>
+        <!-- Add Post Modal -->
+
+    </div>
+
+    <div id="surveyModal" class="modal">
+
+        <div class="modal-card">
+
+            <div class="modal-header">
+
+                <h2>Create Survey</h2>
+
+                <button id="closeSurveyModal" class="close-btn">
+                    &times;
+                </button>
+
+            </div>
+
+            <div class="section">
+
+                <div class="form-group">
+                    <label>Survey Title</label>
+                    <input type="text" id="surveyTitle" placeholder="Survey title">
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="surveyDescription" rows="3" placeholder="Description"></textarea>
+                </div>
+
+                <hr>
+
+                <h3>Questions</h3>
+
+                <div id="questionsContainer"></div>
+
+                <button type="button" id="addQuestionBtn">
+                    + Add Question
+                </button>
+
+            </div>
+
+            <div class="actions">
+
+                <button type="button" id="saveSurveyBtn">
+                    Save Survey
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="answerSurveyModal" class="modal">
+
+        <div class="modal-card">
+
+            <div class="modal-header">
+                <h2 id="answerSurveyTitle"></h2>
+                <button id="closeAnswerSurvey" class="close-btn">&times;</button>
+            </div>
+
+            <div id="answerSurveyQuestions"></div>
+
+            <div class="actions">
+                <button id="submitSurveyAnswers">
+                    Submit Survey
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module" src="js/supabase.js"></script>
+    <script type="module" src="js/header.js"></script>
+    <script type="module" src="js/survey.js"></script>
+
+</body>
+
+</html>

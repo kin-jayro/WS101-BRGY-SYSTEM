@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Portal | Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                linear-gradient(rgba(31, 41, 55, .65), rgba(31, 41, 55, .65)),
+                url("design/bg-login-img.jpg") center/cover no-repeat;
+            z-index: -1;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 70px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+        }
+
+        .header h1 {
+            color: #1f2937;
+            font-size: 28px;
+        }
+
+        .header-buttons {
+            background: #1f2937;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .header-buttons:hover {
+            background: #374151;
+        }
+
+        /* ================= LOGIN CARD ================= */
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .card {
+            width: 420px;
+            max-width: 100%;
+            background: #fff;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
+        }
+
+        .card h2 {
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 5px rgba(37, 99, 235, .35);
+        }
+
+        #login-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: #fff;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        #login-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .register-text {
+            margin-top: 20px;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        .register-text a {
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .register-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width:768px) {
+
+            .header {
+                padding: 0 15px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .header-buttons {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            .card h2 {
+                font-size: 28px;
+            }
+
+        }
+
+        @media (max-width:480px) {
+
+            .container {
+                padding: 15px;
+            }
+
+            .card {
+                padding: 20px;
+                border-radius: 15px;
+            }
+
+            .card h2 {
+                font-size: 24px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <h1>Barangay resident Portal</h1>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h2>Welcome Back!</h2>
+
+            <p class="subtitle">
+                Sign in to access the Barangay Management Portal.
+            </p>
+
+            <form id="login-form">
+
+                <label>Email</label>
+                <input id="email" type="email" placeholder="Enter your email" required>
+
+                <label>Password</label>
+                <input id="password" type="password" placeholder="Enter your password" required>
+
+                <button id="login-btn" type="submit">
+                    Sign In
+                </button>
+                <a href="signup.html">Create Account</a>
+
+            </form>
+
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module" src="js/supabase.js"></script>
+    <script type="module" src="js/login.js"></script>
+
+</body>
+
+</html>

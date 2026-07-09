@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/files.css">
+</head>
+
+<body>
+
+    <!-- Sidebar Toggle -->
+    <button id="menuBtn" class="menu-btn">&#9776;</button>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Sidebar -->
+    <!-- Sidebar -->
+    <aside id="auth-sidebar" class="sidebar level-2 level-3">
+        <button id="closeBtn" class="close-btn">&times;</button>
+        <img class="barangay-logo" src="BrgyLogo.jpg">
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><span>🎛️</span> Dashboard</a></li>
+            <li><a href="announcementsandevents.html"><span>📢</span> Announcements & Events</a></li>
+            <li><a href="brgyinfo.html"><span>📝</span> Barangay Information</a></li>
+            <li><a href="officials.html"><span>👥</span> Barangay Officials</a></li>
+            <li><a href="filerequest.html"><span>📄</span> File Request</a></li>
+            <li><a href="blotter.html"><span>📖</span> Blotter</a></li>
+            <li><a href="survey.html"><span>📝</span> Survey</a></li>
+
+
+            <h3>Admin Panel</h3>
+            <li><a href="files.html" class="active"><span>📂</span> File Management</a></li>
+            <li><a href="requestmanagement.html"><span>📄</span> File Requests</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Main Area -->
+    <div class="main">
+
+
+        <header class="header">
+
+            <h1>Barangay Files</h1>
+
+            <!-- Logged In -->
+            <div id="loggedInUser" class="header-right auth-only">
+                <span id="welcomeText">Welcome, User</span>
+
+                <button id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+            </div>
+
+            <!-- Guest -->
+            <div id="guestUser" class="header-right guest-only">
+                <button class="login-btn" id="login-btn">
+                    Login
+                </button>
+            </div>
+
+        </header>
+        <!-- Content -->
+        <main class="content">
+            <div class="toolbar">
+                <div class="left-buttons">
+                    <button id="upload_btn">Upload File</button>
+                    <button id="create_folder_btn">Create Folder</button>
+                </div>
+
+                <div class="right-buttons">
+                    <button id="refresh_btn">Refresh</button>
+                </div>
+            </div>
+            <div class="file-list-container">
+
+                <div class="file-row list-header">
+                    <div>Name</div>
+                    <div>Last modified</div>
+                </div>
+
+                <div id="return_to_previous_folder">
+                    <div class="file-name-col">
+                        <span>📁</span>
+                        <span>...</span>
+                    </div>
+                </div>
+
+                <div id="file_list_body">
+                    <div class="folder-header-row">
+                    </div>
+                </div>
+            </div>
+            <dialog id="folderModal">
+                <h3 class="modal-title">Create New Folder</h3>
+
+                <input type="text" id="folderNameInput" placeholder="Folder Name">
+
+                <div class="modal-actions">
+                    <button class="btn btn-cancel" id="cancelCreateFolder">Cancel</button>
+                    <button class="btn btn-create" id="confirmCreate">Create</button>
+                </div>
+            </dialog>
+
+            <dialog id="fileModal">
+                <h3 class="modal-title">Upload a File</h3>
+
+
+                <div class="modal-actions">
+                    <input type="file" id="fileInput" style="margin-bottom: 16px; width: 100%;">
+                    <button class="btn btn-cancel" id="cancelUpload">Cancel</button>
+                    <button class="btn btn-create" id="confirmUpload">Upload</button>
+                </div>
+            </dialog>
+
+            <div id="fileDropdownMenu" class="dropdown-menu hidden">
+                <button class="file-dropdown-item level-2 level-3" data-action="open">Open</button>
+                <button class="file-dropdown-item level-2 level-3" data-action="download">Download</button>
+                <button class="file-dropdown-item level-3" id="rename_file" data-action="rename">Rename</button>
+                <button class="file-dropdown-item delete-text level-3" id="delete_file"
+                    data-action="delete">Delete</button>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/supabase.js"></script>
+    <script type="module" src="js/header.js"></script>
+
+    <script type="module" src="js/files.js"></script>
+
+</body>
+
+</html>

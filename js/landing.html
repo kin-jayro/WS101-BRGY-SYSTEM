@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Barangay Portal</title>
+    <link rel="stylesheet" href="styles/landing.css">
+</head>
+
+<body>
+
+    <nav class="landing-navbar">
+        <div class="nav-brand">
+            <img class="barangay-logo" src="BrgyLogo.jpg">
+            <div class="brand-text">
+                <span class="brand-title">BARANGAY RESIDENT PORTAL</span>
+                <span class="brand-sub">Official Community Portal</span>
+            </div>
+        </div>
+        <div class="nav-links">
+            <button id="openLoginModal" class="portal-login-btn">
+                Log In
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="welcome-tagline">MABUHAY!</span>
+            <h1>Welcome to the Official <br><span class="highlight-gold">Barangay Resident Portal</span></h1>
+            <p>Providing efficient public services, transparent governance, and real-time community updates right at
+                your fingertips.</p>
+
+            <div class="hero-action-buttons">
+                <a href="#features" class="btn-secondary">Explore Features</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="quick-links-section">
+        <div class="section-heading">
+            <h2>System Features & Modules</h2>
+            <p>Discover the integrated data management capabilities and public services offered by our platform.</p>
+        </div>
+
+        <div class="services-container-grid">
+
+            <div class="service-teaser-card">
+                <div class="card-icon-circle">📢</div>
+                <div class="card-text-content">
+                    <h3>Public Dashboard</h3>
+                    <p>Tracks live community population statistics, hosts real-time urgent announcements, distributes
+                        localized news releases, and calendars upcoming neighborhood activities seamlessly.</p>
+                </div>
+            </div>
+
+            <div class="service-teaser-card">
+                <div class="card-icon-circle">👥</div>
+                <div class="card-text-content">
+                    <h3>Barangay Officials Management</h3>
+                    <p>Maintains directory profiles of actively serving community officials. Includes tracking systems
+                        for distinct leadership roles, active service durations, and contact channels.</p>
+                </div>
+            </div>
+
+            <div class="service-teaser-card">
+                <div class="card-icon-circle">ℹ️</div>
+                <div class="card-text-content">
+                    <h3>Barangay Information</h3>
+                    <p>Provides a static, centralized overview of foundational jurisdiction metrics, location data,
+                        province listings, hotlines, and official organizational contact points securely.</p>
+                </div>
+            </div>
+
+            <div class="service-teaser-card">
+                <div class="card-icon-circle">📋</div>
+                <div class="card-text-content">
+                    <h3>Surveys</h3>
+                    <p>Empowers the community by hosting local polls and feedback questionnaires. Allows administrators
+                        to safely gather resident insights on ongoing neighborhood projects and city initiatives.</p>
+                </div>
+            </div>
+
+            <div class="service-teaser-card">
+                <div class="card-icon-circle">📁</div>
+                <div class="card-text-content">
+                    <h3>File Request</h3>
+                    <p>Enables digitized processing for community clearances, residency certificates, and permit
+                        paperwork to reduce long waiting queues at the physical hall.</p>
+                </div>
+            </div>
+
+            <div class="service-teaser-card">
+                <div class="card-icon-circle">📖</div>
+                <div class="card-text-content">
+                    <h3>Blotter Records Registry</h3>
+                    <p>Handles structured data management for community peace, security logs, legal classifications,
+                        incident details, and structural status tracking metrics safely.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="landing-footer">
+        <p>&copy; 2026 Barangay Pitipiwpiw wiw wiw All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/supabase.js"></script>
+    <script type="module" src="js/header.js"></script>
+
+    <div id="loginModal" class="login-modal">
+
+        <div class="login-modal-content">
+
+            <span class="close-modal">&times;</span>
+
+            <div class="login-logo">
+                <img src="BrgyLogo.jpg" alt="Barangay Logo">
+            </div>
+
+            <h2>Welcome Back</h2>
+
+            <p class="login-subtitle">
+                Sign in to access the Barangay Resident Portal.
+            </p>
+
+            <form id="login-form">
+
+                <label>Email</label>
+                <input id="email" type="email" placeholder="Enter your email" required>
+
+                <label>Password</label>
+                <input id="password" type="password" placeholder="Enter your password" required>
+
+                <button id="login-btn" type="submit">
+                    Sign In
+                </button>
+
+            </form>
+
+            <div class="register-link">
+                <span>Don't have an account?</span>
+                <button type="button" id="showSignup" class="link-btn">
+                    Create Account
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="signupModal" class="login-modal">
+
+        <div class="login-modal-content">
+
+            <span class="close-signup">&times;</span>
+
+            <h2>Create Account</h2>
+
+            <form id="signup-form">
+
+                <label>Full Name</label>
+                <input id="signup-name" type="text" required>
+
+                <label>Email</label>
+                <input id="signup-email" type="email" required>
+
+                <label>Password</label>
+                <input id="signup-password" type="password" required>
+
+                <label>Confirm Password</label>
+                <input id="confirm-password" type="password" required>
+
+                <button type="submit">
+                    Create Account
+                </button>
+
+            </form>
+
+            <div class="modal-footer">
+                Already have an account?
+                <a href="#" id="showLogin">
+                    Sign In
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="module" src="js/supabase.js"></script>
+    <script type="module" src="js/landing.js"></script>
+
+</body>
+
+</html>
