@@ -1,5 +1,8 @@
 const modal = document.getElementById("blotterModal")
 const blotterTable = document.getElementById("blotter-data")
+const searchInput = document.getElementById("search");
+
+let blotterData = [];
 
 import { supa, requireAuth } from "./supabase.js";
 document.getElementById("add-blotter-btn").onclick = () => {
@@ -309,8 +312,6 @@ async function uploadBlotterFiles(blotterId) {
 
 async function retrieveBlotterData() {
 
-    blotterTable.innerHTML = "";
-
     const { data, error } = await supa
         .from("blotter")
         .select(`
@@ -327,9 +328,15 @@ async function retrieveBlotterData() {
         return;
     }
 
+    blotterData = data;
+    renderTable(blotterData);
+}
+
+function renderTable(records) {
+
     let rows = "";
 
-    data.forEach(record => {
+    records.forEach(record => {
 
         const complainantNames = record.complainant.length
             ? record.complainant.map(c => c.full_name).join(", ")
@@ -554,4 +561,30 @@ window.addEventListener("click", (e) => {
     if (e.target === viewModal) {
         viewModal.classList.remove("show");
     }
+});
+
+searchInput.addEventListener("input", () => {
+
+    const search = searchInput.value.toLowerCase().trim();
+
+    const filtered = blotterData.filter(record => {
+
+        const complainantNames = record.complainant.length
+            ? record.complainant.map(c => c.full_name).join(" ")
+            : "";
+
+        return [
+            record.blotter_id,
+            record.incident_date,
+            complainantNames,
+            record.respondent_name,
+            record.incident_type,
+            record.status
+        ]
+        .join(" ")
+        .toLowerCase()
+        .includes(search);
+    });
+
+    renderTable(filtered);
 });
